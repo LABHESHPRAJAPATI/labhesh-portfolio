@@ -1,0 +1,26 @@
+{
+  "name": "Labhesh Prajapati — Full Stack Laravel Developer",
+  "short_name": "Labhesh Prajapati",
+  "description": "Portfolio of Labhesh Prajapati, a Full Stack Laravel Developer building scalable web applications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
