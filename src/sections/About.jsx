@@ -1,102 +1,63 @@
-import {
-  Calendar,
-  Building2,
-  Briefcase,
-  MapPin,
-  Clock,
-  Globe,
-} from 'lucide-react';
-import { Container } from '@/components/layout/Container';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
 import { SECTION_IDS } from '@/constants/sections';
-import { personal, about } from '@/data';
-import { AboutBackground } from './about/AboutBackground';
-import { HighlightedText } from './about/HighlightedText';
-import { AboutInfoCard } from './about/AboutInfoCard';
-import { CareerGoalCard } from './about/CareerGoalCard';
-import { StrengthsList } from './about/StrengthsList';
-import { TechPills } from './about/TechPills';
+import { about } from '@/data';
 
-const infoItems = [
-  { icon: Calendar, label: 'Experience', value: `${personal.experience} Years` },
-  { icon: Building2, label: 'Current Company', value: personal.company },
-  { icon: Briefcase, label: 'Current Role', value: personal.title },
-  { icon: MapPin, label: 'Location', value: personal.location },
-  { icon: Clock, label: 'Availability', value: personal.availability },
-  { icon: Globe, label: 'Languages', value: personal.languages.join(' / ') },
+const HIGHLIGHTS = [
+  { value: '2+', label: 'Years Experience' },
+  { value: 'Laravel', label: 'Backend Specialist' },
 ];
 
 /**
  * About section.
- * Premium glassmorphism design driven entirely by data.
+ * Light section with highlight cards and editorial text.
  */
 export function About() {
   return (
     <section
       id={SECTION_IDS.ABOUT}
-      className="relative overflow-hidden section"
+      className="section bg-background"
       aria-label="About"
     >
-      <AboutBackground />
+      <div className="container-main grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <RevealOnScroll>
+            <span className="section-label">02 — {about.subtitle}</span>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.05}>
+            <h2 className="section-title">
+              Building scalable web applications with Laravel and modern web technologies.
+            </h2>
+          </RevealOnScroll>
 
-      <Container className="relative z-10">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
-          {/* Left column */}
-          <div className="flex flex-col gap-8">
-            <RevealOnScroll direction="up">
-              <SectionTitle
-                title={about.title}
-                subtitle={about.subtitle}
-                as="h2"
-              />
-            </RevealOnScroll>
-
-            <RevealOnScroll direction="up" delay={0.1}>
-              <HighlightedText
-                text={about.summary}
-                terms={about.highlightTerms}
-                className="max-w-2xl text-body-lg text-muted"
-              />
-            </RevealOnScroll>
-          </div>
-
-          {/* Right column */}
-          <div className="flex flex-col gap-6">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {infoItems.map((item, index) => (
-                <AboutInfoCard
+          <RevealOnScroll delay={0.1}>
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {HIGHLIGHTS.map((item) => (
+                <div
                   key={item.label}
-                  icon={item.icon}
-                  label={item.label}
-                  value={item.value}
-                  delay={index * 0.05}
-                />
+                  className="rounded-xl border border-border bg-surface p-5 text-center transition-all duration-300 hover:border-accent/40"
+                >
+                  <span className="font-display block text-xl font-bold text-foreground">
+                    {item.value}
+                  </span>
+                  <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.06em] text-muted-light">
+                    {item.label}
+                  </span>
+                </div>
               ))}
             </div>
-
-            <CareerGoalCard title={about.careerGoalTitle} text={about.careerGoal} delay={0.3} />
-
-            <RevealOnScroll direction="up" delay={0.4}>
-              <div className="space-y-3">
-                <h3 className="text-heading-4 font-semibold text-foreground">
-                  {about.strengthsTitle}
-                </h3>
-                <StrengthsList strengths={about.strengths} delay={0.45} />
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll direction="up" delay={0.5}>
-              <div className="space-y-3">
-                <h3 className="text-heading-4 font-semibold text-foreground">
-                  {about.technologiesTitle}
-                </h3>
-                <TechPills technologies={about.favoriteTechnologies} delay={0.55} />
-              </div>
-            </RevealOnScroll>
-          </div>
+          </RevealOnScroll>
         </div>
-      </Container>
+
+        <div className="lg:col-span-7 lg:pt-12">
+          {about.paragraphs.map((paragraph, index) => (
+            <RevealOnScroll key={index} delay={0.1 + index * 0.05}>
+              <p className="mb-6 text-base leading-relaxed text-muted-light md:text-lg">
+                {paragraph}
+              </p>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

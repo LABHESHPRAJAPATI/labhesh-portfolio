@@ -9,13 +9,13 @@ export const seo = {
   siteName: `${personal.name} — Portfolio`,
   defaultTitle: `${personal.name} | ${personal.title}`,
   titleTemplate: `%s | ${personal.name}`,
-  defaultDescription: `${personal.name} — ${personal.title} with ${personal.experience} years of experience building scalable web applications with Laravel, PHP, Vue.js, React, and MySQL.`,
+  defaultDescription: `${personal.name} — ${personal.title} with ${personal.experience} years of experience building scalable web applications with Laravel, PHP, Vue.js, and MySQL.`,
   keywordsTemplate: `%s, ${personal.name}, ${personal.title}, Laravel Developer, PHP Developer, Vue.js Developer, Full Stack Developer, Web Developer, Surat, India`,
-  url: 'https://example.com',
+  url: 'https://labheshprajapati.dev',
   ogImage: '/og-image.png',
   twitterHandle: '',
   locale: 'en_US',
-  themeColor: '#050816',
+  themeColor: '#0a0f1c',
 };
 
 export function generateTitle(title) {
@@ -28,7 +28,7 @@ export function generateDescription(description) {
 }
 
 export function generateKeywords(keywords) {
-  return seo.keywordsTemplate.replace('%s', keywords || 'Laravel, PHP, React, MySQL');
+  return seo.keywordsTemplate.replace('%s', keywords || 'Laravel, PHP, Vue.js, MySQL');
 }
 
 export function generateCanonical(path = '') {

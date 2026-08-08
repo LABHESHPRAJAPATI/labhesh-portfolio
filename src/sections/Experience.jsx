@@ -1,77 +1,84 @@
-import { motion } from 'framer-motion';
-import { Container } from '@/components/layout/Container';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
 import { SECTION_IDS } from '@/constants/sections';
-import { experienceSection, experiences, experienceHighlights } from '@/data/experience';
-import { ExperienceBackground } from './experience/ExperienceBackground';
-import { TimelineNode } from './experience/TimelineNode';
-import { ExperienceCard } from './experience/ExperienceCard';
-import { ExperienceHighlights } from './experience/ExperienceHighlights';
+import { experiences } from '@/data/experience';
+
+function ExperienceItem({ experience, index }) {
+  const { startDate, endDate, role, company, description, responsibilities } = experience;
+
+  return (
+    <RevealOnScroll delay={index * 0.12}>
+      <div className="relative pl-8 pb-10 last:pb-0">
+        {/* Timeline dot */}
+        <span
+          className="absolute left-0 top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-background"
+          aria-hidden="true"
+        />
+
+        {/* Date badge */}
+        <span className="font-display mb-2 inline-block rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
+          {startDate} — {endDate}
+        </span>
+
+        <h3 className="font-display text-lg font-semibold md:text-xl">{role}</h3>
+        <span className="mb-4 block text-sm text-muted">{company}</span>
+
+        <p className="mb-4 text-sm leading-relaxed text-muted md:text-base">{description}</p>
+
+        {responsibilities.length > 0 && (
+          <ul className="flex flex-col gap-2">
+            {responsibilities.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-muted-light">
+                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </RevealOnScroll>
+  );
+}
 
 /**
  * Experience section.
- * Premium timeline card with a strong visual hierarchy and polished highlights.
+ * Vertical timeline layout with accent line and date badges.
  */
 export function Experience() {
   return (
     <section
       id={SECTION_IDS.EXPERIENCE}
-      className="relative overflow-hidden py-16 md:py-24 lg:py-28"
+      className="section bg-background"
       aria-label="Professional experience"
     >
-      <ExperienceBackground />
-
-      <Container className="relative z-10">
-        <div className="flex flex-col gap-12 md:gap-16">
-          <RevealOnScroll direction="up" className="mx-auto max-w-2xl text-center">
-            <SectionTitle
-              title={experienceSection.title}
-              subtitle={experienceSection.subtitle}
-              align="center"
-              as="h2"
-            />
+      <div className="container-main grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-4">
+          <RevealOnScroll>
+            <span className="section-label">04 — Experience</span>
           </RevealOnScroll>
-
-          {/* Timeline */}
-          <div className="relative mx-auto w-full max-w-5xl">
-            {/* Animated connector line */}
-            <motion.div
-              initial={{ scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute bottom-0 start-6 top-0 w-px origin-top bg-gradient-to-b from-primary via-secondary to-accent/30 md:start-8"
-              aria-hidden="true"
-            />
-
-            {/* Timeline node */}
-            <div className="absolute start-6 top-0 z-10 -translate-x-1/2 md:start-8">
-              <TimelineNode isActive />
-            </div>
-
-            <div className="ps-14 md:ps-20">
-              {experiences.map((experience, index) => (
-                <ExperienceCard
-                  key={experience.id}
-                  experience={experience}
-                  index={index}
-                  labels={experienceSection}
-                />
-              ))}
-            </div>
-          </div>
-
-          <RevealOnScroll direction="up">
-            <div className="space-y-6">
-              <h3 className="text-center text-heading-3 font-semibold text-foreground">
-                {experienceSection.highlightsTitle}
-              </h3>
-              <ExperienceHighlights highlights={experienceHighlights} />
-            </div>
+          <RevealOnScroll delay={0.05}>
+            <h2 className="section-title">
+              2+ Years<br />Building<br />Solutions
+            </h2>
           </RevealOnScroll>
         </div>
-      </Container>
+
+        <div className="lg:col-span-8">
+          {/* Timeline line */}
+          <div className="relative">
+            <div
+              className="absolute left-[5px] top-2 h-[calc(100%-16px)] w-px bg-border"
+              aria-hidden="true"
+            />
+            {experiences.map((experience, index) => (
+              <ExperienceItem
+                key={experience.id}
+                experience={experience}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

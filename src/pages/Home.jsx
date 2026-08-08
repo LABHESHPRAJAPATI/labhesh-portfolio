@@ -1,6 +1,6 @@
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/common/SEO';
-import { Hero, About, Skills, Experience, Projects, Education, Contact } from '@/sections';
+import { Hero, About, Skills, Experience, Projects, Services, Contact } from '@/sections';
 
 /**
  * Home page.
@@ -15,7 +15,7 @@ export default function Home() {
       <Skills />
       <Experience />
       <Projects />
-      <Education />
+      <Services />
       <Contact />
     </Layout>
   );

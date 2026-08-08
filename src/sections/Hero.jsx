@@ -1,110 +1,94 @@
-import { motion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 import { Download } from 'lucide-react';
-import { Container } from '@/components/layout/Container';
-import { Button } from '@/components/ui/Button';
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
-import { scrollToSection } from '@/lib/scroll';
 import { SECTION_IDS } from '@/constants/sections';
-import { useReducedMotion } from '@/hooks';
-import { personal, about, socials } from '@/data';
-import { HeroBackground } from './hero/HeroBackground';
-import { HeroTypewriter } from './hero/HeroTypewriter';
-import { HeroStats } from './hero/HeroStats';
-import { HeroImage } from './hero/HeroImage';
-import { HeroSocials } from './hero/HeroSocials';
-import { ScrollIndicator } from './hero/ScrollIndicator';
+import { personal } from '@/data';
+import { useTypewriter } from '@/hooks';
 
 /**
  * Hero section for Labhesh Prajapati.
- * Premium Awwwards-inspired design with animations, stats, and a profile image.
+ * Clean two-column layout with large display type and framed profile image.
  */
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const heroBadges = about.favoriteTechnologies.slice(0, 6);
+  const { text } = useTypewriter(personal.tagline, { typingSpeed: 60 });
+
+  const [firstName, lastName] = personal.name.split(' ');
 
   return (
     <section
       id={SECTION_IDS.HOME}
-      className="relative flex min-h-screen items-center overflow-hidden pt-20"
+      className="section section-dark relative flex min-h-screen items-center pb-24 pt-32 lg:pb-32 lg:pt-40"
       aria-label="Introduction"
     >
-      <HeroBackground />
+      <div className="container-main grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Left content */}
+        <div className="order-2 flex flex-col gap-6 lg:order-1">
+          <RevealOnScroll>
+            <span className="section-label mb-0">{personal.greeting}</span>
+          </RevealOnScroll>
 
-      <Container className="relative z-10 py-14 md:py-20 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-24">
-          {/* Left content */}
-          <div className="order-2 flex flex-col gap-7 lg:order-1">
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-3"
+          <RevealOnScroll delay={0.05}>
+            <h1 className="font-display text-[clamp(48px,7vw,84px)] font-bold leading-[1.05] tracking-[-0.04em]">
+              <span className="block">{firstName}</span>
+              <span className="block">{lastName}</span>
+            </h1>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={0.1}>
+            <p className="min-h-[3.5rem] text-base leading-relaxed text-muted md:text-lg">
+              {text}
+              {!shouldReduceMotion && (
+                <span className="ml-1 inline-block animate-blink text-accent" aria-hidden="true">
+                  |
+                </span>
+              )}
+            </p>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={0.15}>
+            <a
+              href={personal.resume}
+              download
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-accent px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_10px_30px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_40px_rgba(249,115,22,0.35)] font-display"
+              aria-label="Download resume as PDF"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted sm:text-sm">
-                {personal.greeting}
+              <span className="relative z-10">Download CV</span>
+              <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0.5">
+                <Download className="h-3.5 w-3.5" aria-hidden="true" />
               </span>
-              <h1 className="text-heading-1 font-bold tracking-tight text-foreground md:text-display lg:text-display-xl">
-                {personal.name}
-              </h1>
-              <p className="text-heading-3 font-semibold text-foreground md:text-heading-2">
-                {personal.title}
-              </p>
-              <div className="pt-1">
-                <HeroTypewriter titles={personal.animatedTitles} />
-              </div>
-            </motion.div>
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-accent-hover to-accent transition-transform duration-500 group-hover:translate-x-0" aria-hidden="true" />
+            </a>
+          </RevealOnScroll>
+        </div>
 
-            <RevealOnScroll direction="up" delay={0.2}>
-              <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-                {about.shortDescription}
-              </p>
-            </RevealOnScroll>
+        {/* Right image */}
+        <RevealOnScroll delay={0.2} className="order-1 flex justify-center lg:order-2">
+          <div className="group relative">
+            {/* Outer frame glow */}
+            <div className="absolute -inset-3 rounded-[28px] border border-accent/20 bg-accent/5 transition-all duration-500 group-hover:-inset-4 group-hover:border-accent/30 md:-inset-4 md:rounded-[32px] md:group-hover:-inset-5" aria-hidden="true" />
 
-            <RevealOnScroll direction="up" delay={0.3}>
-              <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href={personal.resume}
-                  download
-                  className="btn btn-primary sm:btn-lg"
-                  aria-label="Download resume as PDF"
-                >
-                  <Download className="h-5 w-5" aria-hidden="true" />
-                  Download Resume
-                </a>
-                <Button
-                  variant="outline"
-                  size="md"
-                  className="sm:btn-lg"
-                  onClick={() => scrollToSection(SECTION_IDS.CONTACT)}
-                  aria-label="Scroll to contact section"
-                >
-                  Contact Me
-                </Button>
-              </div>
-            </RevealOnScroll>
+            <div className="relative h-[380px] w-[300px] overflow-hidden rounded-2xl border border-border bg-elevated shadow-2xl transition-colors duration-500 group-hover:border-accent/40 md:h-[480px] md:w-[380px]">
+              <img
+                src={personal.image}
+                alt={`${personal.name} — ${personal.title}`}
+                className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                loading="eager"
+              />
+            </div>
 
-            <RevealOnScroll direction="up" delay={0.4}>
-              <HeroSocials socials={socials} />
-            </RevealOnScroll>
-
-            <div className="pt-2">
-              <HeroStats stats={personal.stats} />
+            {/* Experience badge */}
+            <div className="absolute -left-4 bottom-10 flex items-center gap-3 rounded-full bg-accent px-5 py-3 text-white shadow-2xl shadow-accent/20 md:-left-8">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-lg font-bold">
+                {personal.experience}
+              </span>
+              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.06em] leading-snug whitespace-nowrap">
+                Years of<br />Experience
+              </span>
             </div>
           </div>
-
-          {/* Right image */}
-          <div className="order-1 flex justify-center lg:order-2">
-            <HeroImage
-              image={personal.image}
-              imageHover={personal.imageHover}
-              name={personal.name}
-              badges={heroBadges}
-            />
-          </div>
-        </div>
-      </Container>
-
-      <ScrollIndicator target={SECTION_IDS.ABOUT} />
+        </RevealOnScroll>
+      </div>
     </section>
   );
 }

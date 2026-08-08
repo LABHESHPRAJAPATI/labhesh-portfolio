@@ -23,7 +23,7 @@ export const contact = {
   email: personal.email,
   phone: personal.phone,
   location: personal.location,
-  availability: personal.availability || 'Hybrid',
+  availability: personal.availability || 'Open to opportunities',
   whatsapp: personal.phone ? `https://wa.me/91${personal.phone}` : '',
   formEndpoint: '',
 };

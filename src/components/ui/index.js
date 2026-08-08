@@ -1,9 +1,0 @@
-export { Badge } from './Badge';
-export { Button } from './Button';
-export { Card } from './Card';
-export { Heading } from './Heading';
-export { Icon } from './Icon';
-export { SectionTitle } from './SectionTitle';
-export { SocialButton } from './SocialButton';
-export { Spinner } from './Spinner';
-export { TechIcon } from './TechIcon';

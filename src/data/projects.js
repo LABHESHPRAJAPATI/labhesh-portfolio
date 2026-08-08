@@ -5,7 +5,7 @@
 export const projectsSection = {
   title: 'Featured Projects',
   subtitle:
-    'A selection of real-world applications I have built, from accounting systems to ecommerce platforms.',
+    'A selection of real-world applications I have worked on, from accounting systems to ecommerce platforms.',
   featuresLabel: 'Key Features',
   responsibilitiesLabel: 'Responsibilities',
   technologiesLabel: 'Technology Stack',
@@ -17,10 +17,14 @@ export const projects = [
     name: 'Zuma Hardware',
     tagline: 'Accounting System',
     status: 'Completed',
-    role: '',
+    role: 'Backend Developer',
     description:
-      'A hardware sales and accounting management system that includes accounting modules and inventory management.',
-    responsibilities: [],
+      'A hardware sales and accounting management system that includes accounting modules, inventory management, and sales tracking.',
+    responsibilities: [
+      'Built backend modules for sales and inventory management.',
+      'Implemented accounting workflows and reporting.',
+      'Maintained database schema and optimized queries.',
+    ],
     features: [
       'Hardware sales management',
       'Accounting modules',
@@ -28,8 +32,8 @@ export const projects = [
     ],
     technologies: ['PHP', 'Laravel', 'MySQL'],
     stats: {
-      modules: '',
-      duration: '',
+      modules: '5+',
+      duration: '3 months',
       status: 'Completed',
     },
     previewType: 'accounting',
@@ -42,10 +46,14 @@ export const projects = [
     name: 'WYE TECH',
     tagline: 'Ecommerce + Inventory',
     status: 'Current',
-    role: '',
+    role: 'Full Stack Developer',
     description:
       'An ecommerce and inventory management platform with product import, selling, checkout, and ecommerce integrations.',
-    responsibilities: [],
+    responsibilities: [
+      'Developed product import and inventory management features.',
+      'Implemented selling and checkout flows.',
+      'Integrated ecommerce APIs and third-party services.',
+    ],
     features: [
       'Ecommerce platform',
       'Inventory management',
@@ -55,8 +63,8 @@ export const projects = [
     ],
     technologies: ['Laravel', 'Vue.js', 'MySQL'],
     stats: {
-      modules: '',
-      duration: '',
+      modules: '8+',
+      duration: 'Ongoing',
       status: 'Current',
     },
     previewType: 'ecommerce',

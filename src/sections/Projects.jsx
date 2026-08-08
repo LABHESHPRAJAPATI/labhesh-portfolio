@@ -1,92 +1,81 @@
-import { useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import { Container } from '@/components/layout/Container';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
 import { SECTION_IDS } from '@/constants/sections';
-import { projectsSection, projects } from '@/data/projects';
-import { useTheme } from '@context/ThemeContext';
-import { ProjectsBackground } from './projects/ProjectsBackground';
-import { ProjectCard } from './projects/ProjectCard';
+import { projects } from '@/data/projects';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+function ProjectCard({ project, index }) {
+  const number = String(index + 1).padStart(2, '0');
+
+  return (
+    <RevealOnScroll delay={index * 0.1} className="h-full">
+      <article className="card group relative flex h-full flex-col overflow-hidden hover:border-accent/40">
+        {/* Large number badge */}
+        <span className="font-display absolute right-5 top-4 text-[64px] font-bold leading-none text-background/10 transition-colors duration-300 group-hover:text-accent/10 sm:right-6 sm:top-5">
+          {number}
+        </span>
+
+        <div className="relative flex flex-1 flex-col gap-4">
+          <div>
+            <span className="font-display mb-2 block text-[11px] font-medium text-muted-light">
+              Featured Project
+            </span>
+            <h3 className="font-display text-xl font-semibold text-background transition-colors duration-300 group-hover:text-accent">
+              {project.name}
+            </h3>
+          </div>
+
+          <p className="flex-1 text-sm leading-relaxed text-background/70 md:text-base">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 pt-2">
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-background/20 bg-background/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.04em] text-background/80"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+    </RevealOnScroll>
+  );
+}
 
 /**
  * Projects section.
- * Swiper slider showcasing project cards with autoplay, pagination, and responsive slides.
+ * Dark section with large numbered feature cards and tech tags.
  */
 export function Projects() {
-  const swiperRef = useRef(null);
-  const { direction } = useTheme();
-  const enableLoop = projects.length > 2;
-
   return (
     <section
       id={SECTION_IDS.PROJECTS}
-      className="relative overflow-hidden py-16 md:py-24 lg:py-28"
+      className="section section-dark"
       aria-label="Featured projects"
     >
-      <ProjectsBackground />
-
-      <Container className="relative z-10">
-        <div className="flex flex-col gap-10 md:gap-14">
-          <RevealOnScroll direction="up" className="mx-auto max-w-2xl text-center">
-            <SectionTitle
-              title={projectsSection.title}
-              subtitle={projectsSection.subtitle}
-              align="center"
-              as="h2"
-            />
+      <div className="container-main">
+        <div className="mb-12">
+          <RevealOnScroll>
+            <span className="section-label">05 — Projects</span>
           </RevealOnScroll>
-
-          <RevealOnScroll direction="up" delay={0.1}>
-            <div
-              onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
-              onMouseLeave={() => swiperRef.current?.autoplay?.start()}
-              className="projects-swiper-wrapper"
-            >
-              <Swiper
-                onSwiper={(swiper) => {
-                  swiperRef.current = swiper;
-                }}
-                dir={direction}
-                modules={[Autoplay, Pagination]}
-                slidesPerView={1}
-                spaceBetween={24}
-                loop={enableLoop}
-                speed={700}
-                autoplay={{
-                  delay: 4000,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }}
-                pagination={{
-                  clickable: true,
-                  dynamicBullets: true,
-                }}
-                grabCursor
-                breakpoints={{
-                  768: {
-                    spaceBetween: 28,
-                  },
-                  1280: {
-                    spaceBetween: 32,
-                  },
-                }}
-                className="!pb-14"
-              >
-                {projects.map((project, index) => (
-                  <SwiperSlide key={project.id} className="!h-auto">
-                    <ProjectCard project={project} index={index} labels={projectsSection} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
+          <RevealOnScroll delay={0.05}>
+            <h2 className="section-title">
+              Selected Work
+            </h2>
           </RevealOnScroll>
         </div>
-      </Container>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

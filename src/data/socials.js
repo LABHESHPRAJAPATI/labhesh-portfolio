@@ -1,3 +1,5 @@
+import { personal } from './personal';
+
 /**
  * Social profile links.
  */
@@ -18,19 +20,19 @@ export const socials = [
   {
     id: 'email',
     name: 'Email',
-    url: 'mailto:labheshprajapatilucky@gmail.com',
+    url: `mailto:${personal.email}`,
     label: 'Send an email',
   },
   {
     id: 'phone',
     name: 'Phone',
-    url: 'tel:6377383035',
+    url: `tel:${personal.phone}`,
     label: 'Call phone number',
   },
   {
     id: 'whatsapp',
     name: 'WhatsApp',
-    url: '',
+    url: personal.phone ? `https://wa.me/91${personal.phone}` : '',
     label: 'WhatsApp chat',
   },
 ];

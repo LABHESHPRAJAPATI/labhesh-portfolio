@@ -8,7 +8,7 @@ export const SECTION_IDS = {
   SKILLS: 'skills',
   EXPERIENCE: 'experience',
   PROJECTS: 'projects',
-  EDUCATION: 'education',
+  SERVICES: 'services',
   CONTACT: 'contact',
 };
 

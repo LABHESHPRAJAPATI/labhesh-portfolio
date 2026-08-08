@@ -1,15 +1,14 @@
-# Harshal Katrodiya — Portfolio
+# Labhesh Prajapati — Portfolio
 
-A premium, production-ready personal developer portfolio built with React 19, Vite, and Tailwind CSS.
+A clean, classic, and modern personal developer portfolio built with React 19, Vite, and Tailwind CSS.
 
 ## Tech Stack
 
 - **React 19** — UI library
 - **Vite 5** — Build tool and dev server
 - **Tailwind CSS 3** — Utility-first styling
-- **Framer Motion** — Premium animations
+- **Framer Motion** — Scroll reveal animations
 - **Lucide React** — Consistent icon set
-- **Simple Icons** — Brand-accurate technology icons
 
 ## Getting Started
 
@@ -32,55 +31,36 @@ npm run preview
 ```
 src/
   components/
-    ui/          # Reusable UI primitives
-    common/      # Shared helpers (SEO, animations, etc.)
-    layout/      # Navbar
-    sections/    # Page sections
+    animation/   # Reusable animation wrappers
+    common/      # Shared helpers (SEO, loading fallback)
+    layout/      # Header, vertical nav, scroll indicator
   context/       # Theme provider
   hooks/         # Custom React hooks
   data/          # Content data files
-  animations/    # Framer Motion variants
-  config/        # Site configuration
-  lib/           # Utility functions
+  sections/      # Page sections
   styles/        # Global styles and theme tokens
 ```
 
 ## Content Source
 
-All content is sourced directly from the resume. No fake companies, projects, or experience are included.
+All content is sourced directly from real experience. No fake companies, projects, or experience are included.
 
 ## Before Deploying
 
-1. Add your professional photo to:
-   - `public/images/profile/harshal-katrodiya.jpg`
-
-2. Add your resume PDF to:
-   - `public/resume/harshal-katrodiya-resume.pdf`
-
-3. Add a real GitHub URL to `src/data/socialLinks.js` if available.
-
-4. Update the domain in:
-   - `src/config/site.js`
+1. Add your professional photo to `public/images/labesh-prajapati.webp`.
+2. Add your resume PDF to `public/resume/labesh-prajapati-resume.pdf`.
+3. Update the domain in:
+   - `src/data/seo.js`
    - `public/robots.txt`
    - `public/sitemap.xml`
-   - `index.html`
-
-5. Replace placeholder OG image with a real one:
-   - `public/images/og-image.png` (recommended 1200×630px)
-
-6. (Optional) Integrate EmailJS in `src/components/ui/ContactForm.jsx` for live form submissions.
-
-## Performance Notes
-
-- Sections below the Hero are lazy-loaded for faster initial paint.
-- Vendor libraries are split into separate chunks for better caching.
-- Fonts are preconnected and loaded with `display=swap`.
-- Images should be optimized before deployment.
+   - `index.html` (if needed)
+4. Replace placeholder OG image with a real one at `public/og-image.png` (recommended 1200×630px).
+5. Add real project screenshots to `public/images/projects/` if available.
 
 ## Accessibility
 
 - Semantic HTML throughout
-- WCAG 2.2 compliant color contrast
+- WCAG-compliant color contrast
 - Keyboard-navigable components
 - ARIA labels and live regions
 - `prefers-reduced-motion` respected
@@ -88,7 +68,4 @@ All content is sourced directly from the resume. No fake companies, projects, or
 
 ## License
 
-© 2026 Harshal Katrodiya. All rights reserved.
-# harshal-portfolio
-# harshal-portfolio
-# labhesh-portfolio
+© 2026 Labhesh Prajapati. All rights reserved.

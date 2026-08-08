@@ -25,14 +25,17 @@ export const experiences = [
       'Working as a Laravel Developer to develop and maintain Laravel applications, build REST APIs, implement backend business logic, integrate third-party services, collaborate with the development team, and maintain clean and scalable code.',
     responsibilities: [
       'Develop and maintain Laravel applications.',
-      'Build REST APIs.',
-      'Implement backend business logic.',
-      'Integrate third-party services.',
-      'Collaborate with the development team.',
-      'Maintain clean and scalable code.',
+      'Build secure REST APIs for web and mobile clients.',
+      'Implement backend business logic and database architecture.',
+      'Integrate third-party services and payment gateways.',
+      'Collaborate with the development team to deliver features on time.',
+      'Maintain clean, scalable, and well-documented code.',
     ],
-    achievements: [],
-    technologies: [],
+    achievements: [
+      'Delivered multiple backend modules for production Laravel applications.',
+      'Improved application reliability through clean API design and testing.',
+    ],
+    technologies: ['Laravel', 'PHP', 'MySQL', 'REST API', 'Vue.js', 'Git'],
   },
 ];
 

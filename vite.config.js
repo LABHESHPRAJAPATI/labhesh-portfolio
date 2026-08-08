@@ -8,7 +8,6 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
-      '@ui': path.resolve(__dirname, './src/components/ui'),
       '@common': path.resolve(__dirname, './src/components/common'),
       '@layout': path.resolve(__dirname, './src/components/layout'),
       '@animation': path.resolve(__dirname, './src/components/animation'),
@@ -31,9 +30,8 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom'],
           'vendor-router': ['react-router-dom'],
           'vendor-motion': ['framer-motion'],
-          'vendor-icons': ['lucide-react', 'simple-icons'],
+          'vendor-icons': ['lucide-react'],
           'vendor-ui': ['clsx', 'tailwind-merge', 'react-helmet-async'],
-          'vendor-swiper': ['swiper/react', 'swiper/modules'],
         },
       },
     },

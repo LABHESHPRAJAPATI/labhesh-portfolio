@@ -1,103 +1,89 @@
-import { Container } from '@/components/layout/Container';
-import { SectionTitle } from '@/components/ui/SectionTitle';
+import { Mail, MapPin } from 'lucide-react';
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
+import { SocialIcon } from '@/components/common';
 import { SECTION_IDS } from '@/constants/sections';
-import { contactSection, contact } from '@/data/contact';
-import { socials } from '@/data/socials';
-import { ContactBackground } from './contact/ContactBackground';
-import { ContactIntro } from './contact/ContactIntro';
-import { ContactCards } from './contact/ContactCards';
-import { ContactActions } from './contact/ContactActions';
-import { ContactSocials } from './contact/ContactSocials';
-
-const contactItems = [
-  {
-    id: 'email',
-    title: contactSection.emailLabel,
-    value: contact.email,
-    href: `mailto:${contact.email}`,
-    label: 'Send an email',
-    external: false,
-  },
-  {
-    id: 'phone',
-    title: contactSection.phoneLabel,
-    value: contact.phone,
-    href: `tel:${contact.phone}`,
-    label: 'Make a phone call',
-    external: false,
-  },
-  {
-    id: 'whatsapp',
-    title: contactSection.whatsappLabel,
-    value: contact.phone,
-    href: contact.whatsapp,
-    label: 'Chat on WhatsApp',
-    external: true,
-  },
-  {
-    id: 'location',
-    title: contactSection.locationLabel,
-    value: contact.location,
-    href: '',
-    label: 'Location',
-    external: false,
-  },
-];
+import { contact, contactSection, personal, socials } from '@/data';
 
 /**
  * Contact section.
- * Professional introduction, contact cards, CTAs, and social links.
+ * Dark section with a contact info card.
  */
 export function Contact() {
+  const year = new Date().getFullYear();
+  const socialLinks = socials.filter((s) => s.url);
+
   return (
     <section
       id={SECTION_IDS.CONTACT}
-      className="relative overflow-hidden section"
+      className="section section-dark"
       aria-label="Contact"
     >
-      <ContactBackground />
-
-      <Container className="relative z-10">
-        <div className="flex flex-col gap-12 md:gap-16">
-          <RevealOnScroll direction="up" className="mx-auto max-w-2xl text-center">
-            <SectionTitle
-              title={contactSection.title}
-              subtitle={contactSection.subtitle}
-              align="center"
-              as="h2"
-            />
+      <div className="container-main grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <RevealOnScroll>
+            <span className="section-label">07 — Contact</span>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.05}>
+            <h2 className="section-title">
+              Let&apos;s Build<br />Something<br />Great
+            </h2>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.1}>
+            <p className="mt-6 text-sm text-muted-light">
+              © {year} {personal.name}. All rights reserved.
+            </p>
           </RevealOnScroll>
 
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Left */}
-            <RevealOnScroll direction="up" delay={0.1}>
-              <div className="flex flex-col gap-8">
-                <ContactIntro
-                  introduction={contactSection.introduction}
-                  availability={contact.availability}
-                  location={contact.location}
-                  labels={contactSection}
-                />
-                <ContactActions
-                  email={contact.email}
-                  phone={contact.phone}
-                  emailLabel={contactSection.emailCta}
-                  phoneLabel={contactSection.phoneCta}
-                />
-              </div>
-            </RevealOnScroll>
-
-            {/* Right */}
-            <RevealOnScroll direction="up" delay={0.2}>
-              <div className="flex flex-col gap-8">
-                <ContactCards items={contactItems} />
-                <ContactSocials socials={socials} />
-              </div>
-            </RevealOnScroll>
-          </div>
+          <RevealOnScroll delay={0.15}>
+            <div className="mt-6 flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <SocialIcon key={social.id} social={social} />
+              ))}
+            </div>
+          </RevealOnScroll>
         </div>
-      </Container>
+
+        <div className="lg:col-span-7 lg:pt-4">
+          <RevealOnScroll delay={0.1}>
+            <div className="rounded-2xl border border-background/20 bg-background/5 p-6 sm:p-8">
+              <p className="mb-2 text-lg font-semibold text-background">
+                {contact.availability}
+              </p>
+              <p className="mb-8 text-base leading-relaxed text-muted-light">
+                {contactSection.introduction}
+              </p>
+
+              <div className="flex flex-col gap-5">
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="group flex items-center gap-4 text-background transition-colors duration-300 hover:text-accent"
+                >
+                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-background/20 transition-colors duration-300 group-hover:border-accent">
+                    <Mail className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <span className="text-base font-medium sm:text-lg">{contact.email}</span>
+                </a>
+
+                <div className="flex items-start gap-4 text-background">
+                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-background/20">
+                    <MapPin className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <span className="block text-base font-medium sm:text-lg">{contact.location}</span>
+                    <span className="text-sm text-muted-light">Open to Remote & On-site Opportunities</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 border-t border-background/10 pt-6">
+                <p className="font-display text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-light">
+                  Designed & Built with care
+                </p>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </div>
     </section>
   );
 }
