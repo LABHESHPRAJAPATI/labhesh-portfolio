@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { Moon, Palette, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { scrollToSection } from '@/lib/scroll';
 import { SECTION_IDS } from '@/constants/sections';
@@ -7,21 +7,57 @@ import { useTheme } from '@context/ThemeContext';
 import { personal } from '@/data/personal';
 import { NAV_ITEMS } from '@/constants/navigation';
 
-function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === 'dark';
+function PaletteToggle() {
+  const { palette, togglePalette } = useTheme();
+  const isClassic = palette === 'classic';
 
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={togglePalette}
+      className="relative flex h-8 w-14 items-center rounded-full border border-border bg-elevated p-1 transition-colors duration-300 hover:border-accent"
+      aria-label={isClassic ? 'Switch to modern palette' : 'Switch to classic palette'}
+      aria-pressed={isClassic}
+    >
+      <span className="sr-only">
+        {isClassic ? 'Switch to modern palette' : 'Switch to classic palette'}
+      </span>
+
+      <span className="absolute left-2 text-[8px] font-bold uppercase tracking-wider text-foreground/60">
+        M
+      </span>
+      <span className="absolute right-2 text-[8px] font-bold uppercase tracking-wider text-foreground/60">
+        C
+      </span>
+
+      <span
+        className={cn(
+          'relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-background shadow-sm transition-transform duration-300',
+          isClassic ? 'translate-x-6' : 'translate-x-0'
+        )}
+      >
+        <Palette className="h-3 w-3" aria-hidden="true" />
+      </span>
+    </button>
+  );
+}
+
+function ModeToggle() {
+  const { mode, toggleMode } = useTheme();
+  const isDark = mode === 'dark';
+
+  return (
+    <button
+      type="button"
+      onClick={toggleMode}
       className="relative flex h-8 w-14 items-center rounded-full border border-border bg-elevated p-1 transition-colors duration-300 hover:border-accent"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       aria-pressed={isDark}
     >
-      <span className="sr-only">{isDark ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+      <span className="sr-only">
+        {isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      </span>
 
-      {/* Track icons */}
       <span className="absolute left-2 flex items-center justify-center text-foreground/60">
         <Sun className="h-3.5 w-3.5" aria-hidden="true" />
       </span>
@@ -29,7 +65,6 @@ function ThemeToggle() {
         <Moon className="h-3.5 w-3.5" aria-hidden="true" />
       </span>
 
-      {/* Sliding knob */}
       <span
         className={cn(
           'relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-background shadow-sm transition-transform duration-300',
@@ -47,13 +82,13 @@ function ThemeToggle() {
 }
 
 /**
- * Floating rounded header that adapts to light/dark theme.
+ * Floating rounded header that adapts to palette and mode.
  * Matches the bottom nav pill style.
  */
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const { mode } = useTheme();
+  const isDarkMode = mode === 'dark';
 
   const handleNavClick = (event, id) => {
     event.preventDefault();
@@ -73,7 +108,7 @@ export function Header() {
           >
             {/* Brand icon badge */}
             <img
-              src={isDark ? '/lp-icon-cream.svg' : '/lp-icon-navy.svg'}
+              src={isDarkMode ? '/lp-icon-cream.svg' : '/lp-icon-navy.svg'}
               alt={personal.name}
               className="h-9 w-9 rounded-full"
             />
@@ -86,7 +121,8 @@ export function Header() {
           </a>
 
           <div className="flex items-center gap-3">
-            <ThemeToggle />
+            <PaletteToggle />
+            <ModeToggle />
 
             <button
               type="button"

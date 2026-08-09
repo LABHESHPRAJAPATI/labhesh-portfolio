@@ -1,22 +1,31 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const THEME_STORAGE_KEY = 'portfolio-theme';
+const PALETTE_STORAGE_KEY = 'portfolio-palette';
+const MODE_STORAGE_KEY = 'portfolio-mode';
 const DIRECTION_STORAGE_KEY = 'portfolio-direction';
+
+const PALETTES = ['modern', 'classic'];
+const MODES = ['light', 'dark'];
 
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light');
+  const [palette, setPalette] = useState('modern');
+  const [mode, setMode] = useState('light');
   const [direction, setDirection] = useState('ltr');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    const savedPalette = window.localStorage.getItem(PALETTE_STORAGE_KEY);
+    const savedMode = window.localStorage.getItem(MODE_STORAGE_KEY);
     const savedDirection = window.localStorage.getItem(DIRECTION_STORAGE_KEY);
 
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-      setTheme(savedTheme);
+    if (PALETTES.includes(savedPalette)) {
+      setPalette(savedPalette);
+    }
+    if (MODES.includes(savedMode)) {
+      setMode(savedMode);
     }
     if (savedDirection === 'rtl' || savedDirection === 'ltr') {
       setDirection(savedDirection);
@@ -27,21 +36,36 @@ export function ThemeProvider({ children }) {
     if (!mounted) return;
 
     const root = window.document.documentElement;
-    root.classList.toggle('dark', theme === 'dark');
-    root.classList.toggle('light', theme === 'light');
+    root.classList.toggle('palette-modern', palette === 'modern');
+    root.classList.toggle('palette-classic', palette === 'classic');
+    root.classList.toggle('mode-light', mode === 'light');
+    root.classList.toggle('mode-dark', mode === 'dark');
     root.setAttribute('dir', direction);
     root.style.direction = direction;
 
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    window.localStorage.setItem(PALETTE_STORAGE_KEY, palette);
+    window.localStorage.setItem(MODE_STORAGE_KEY, mode);
     window.localStorage.setItem(DIRECTION_STORAGE_KEY, direction);
-  }, [theme, direction, mounted]);
+  }, [palette, mode, direction, mounted]);
 
-  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  const toggleDirection = () => setDirection((prev) => (prev === 'ltr' ? 'rtl' : 'ltr'));
+  const togglePalette = () =>
+    setPalette((prev) => (prev === 'modern' ? 'classic' : 'modern'));
+  const toggleMode = () =>
+    setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
+  const toggleDirection = () =>
+    setDirection((prev) => (prev === 'ltr' ? 'rtl' : 'ltr'));
 
   return (
     <ThemeContext.Provider
-      value={{ theme, direction, toggleTheme, toggleDirection, mounted }}
+      value={{
+        palette,
+        mode,
+        direction,
+        togglePalette,
+        toggleMode,
+        toggleDirection,
+        mounted,
+      }}
     >
       {children}
     </ThemeContext.Provider>

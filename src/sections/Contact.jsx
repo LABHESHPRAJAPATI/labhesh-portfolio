@@ -6,7 +6,7 @@ import { contact, contactSection, personal, socials } from '@/data';
 
 /**
  * Contact section.
- * Dark section with a contact info card.
+ * Dark section with a clean, classic contact layout.
  */
 export function Contact() {
   const year = new Date().getFullYear();
@@ -18,71 +18,82 @@ export function Contact() {
       className="section section-dark"
       aria-label="Contact"
     >
-      <div className="container-main grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <RevealOnScroll>
-            <span className="section-label">07 — Contact</span>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.05}>
-            <h2 className="section-title">
-              Let&apos;s Build<br />Something<br />Great
-            </h2>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.1}>
-            <p className="mt-6 text-sm text-muted-light">
-              © {year} {personal.name}. All rights reserved.
-            </p>
-          </RevealOnScroll>
-
-          <RevealOnScroll delay={0.15}>
-            <div className="mt-6 flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <SocialIcon key={social.id} social={social} />
-              ))}
-            </div>
-          </RevealOnScroll>
-        </div>
-
-        <div className="lg:col-span-7 lg:pt-4">
-          <RevealOnScroll delay={0.1}>
-            <div className="rounded-2xl border border-background/20 bg-background/5 p-6 sm:p-8">
-              <p className="mb-2 text-lg font-semibold text-background">
-                {contact.availability}
-              </p>
-              <p className="mb-8 text-base leading-relaxed text-muted-light">
+      <div className="container-main">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Headline */}
+          <div className="lg:col-span-7">
+            <RevealOnScroll>
+              <span className="section-label">07 — CONTACT</span>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.05}>
+              <h2 className="section-title">
+                Let&apos;s Build Something Great
+              </h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.08}>
+              <div className="mt-5 h-1 w-16 bg-accent" aria-hidden="true" />
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.1}>
+              <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-light md:text-lg">
                 {contactSection.introduction}
               </p>
+            </RevealOnScroll>
+          </div>
 
-              <div className="flex flex-col gap-5">
+          {/* Contact details */}
+          <div className="lg:col-span-5">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex flex-col gap-8">
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group flex items-center gap-4 text-background transition-colors duration-300 hover:text-accent"
+                  className="group block border-b border-background/10 pb-8 transition-colors duration-300"
                 >
-                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-background/20 transition-colors duration-300 group-hover:border-accent">
-                    <Mail className="h-4 w-4" aria-hidden="true" />
+                  <span className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-light">
+                    <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                    Email
                   </span>
-                  <span className="text-base font-medium sm:text-lg">{contact.email}</span>
+                  <span className="block text-lg font-medium text-background transition-colors duration-300 group-hover:text-accent sm:text-xl">
+                    {contact.email}
+                  </span>
                 </a>
 
-                <div className="flex items-start gap-4 text-background">
-                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-background/20">
-                    <MapPin className="h-4 w-4" aria-hidden="true" />
-                  </span>
+                <div className="flex items-start gap-4 border-b border-background/10 pb-8">
+                  <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-light" aria-hidden="true" />
                   <div>
-                    <span className="block text-base font-medium sm:text-lg">{contact.location}</span>
-                    <span className="text-sm text-muted-light">Open to Remote & On-site Opportunities</span>
+                    <span className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-light">
+                      Location
+                    </span>
+                    <span className="block text-lg font-medium text-background">{contact.location}</span>
+                    <span className="text-sm text-muted-light">Open to remote opportunities</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span className="mb-3 block text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-light">
+                    Connect
+                  </span>
+                  <div className="flex items-center gap-3">
+                    {socialLinks.map((social) => (
+                      <SocialIcon key={social.id} social={social} />
+                    ))}
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8 border-t border-background/10 pt-6">
-                <p className="font-display text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-light">
-                  Designed & Built with care
-                </p>
-              </div>
-            </div>
-          </RevealOnScroll>
+            </RevealOnScroll>
+          </div>
         </div>
+
+        {/* Bottom bar */}
+        <RevealOnScroll delay={0.2}>
+          <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-background/10 pt-8 sm:flex-row">
+            <p className="text-sm text-muted-light">
+              © {year} {personal.name}. All rights reserved.
+            </p>
+            <p className="font-display text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-light">
+              Designed & Built with care
+            </p>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+import { Check } from 'lucide-react';
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
 import { SECTION_IDS } from '@/constants/sections';
 import { experiences } from '@/data/experience';
@@ -7,32 +8,38 @@ function ExperienceItem({ experience, index }) {
 
   return (
     <RevealOnScroll delay={index * 0.12}>
-      <div className="relative pl-8 pb-10 last:pb-0">
-        {/* Timeline dot */}
+      <div className="relative pl-10 pb-12 last:pb-0">
+        {/* Timeline dot with ring */}
         <span
-          className="absolute left-0 top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-background"
+          className="absolute left-0 top-2 flex h-4 w-4 items-center justify-center rounded-full border-2 border-accent bg-background"
           aria-hidden="true"
-        />
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+        </span>
 
         {/* Date badge */}
-        <span className="font-display mb-2 inline-block rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
+        <span className="font-display mb-3 inline-block rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
           {startDate} — {endDate}
         </span>
 
-        <h3 className="font-display text-lg font-semibold md:text-xl">{role}</h3>
-        <span className="mb-4 block text-sm text-muted">{company}</span>
+        <div className="mb-4">
+          <h3 className="font-display text-xl font-semibold md:text-2xl">{role}</h3>
+          <span className="block text-sm font-medium text-muted">{company}</span>
+        </div>
 
-        <p className="mb-4 text-sm leading-relaxed text-muted md:text-base">{description}</p>
+        <p className="mb-5 text-sm leading-relaxed text-muted md:text-base">{description}</p>
 
         {responsibilities.length > 0 && (
           <>
             <span className="font-display mb-3 block text-[11px] font-semibold uppercase tracking-[0.1em] text-accent">
               Key Responsibilities
             </span>
-            <ul className="flex flex-col gap-2">
+            <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
               {responsibilities.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-muted-light">
-                  <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                  <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <Check className="h-2.5 w-2.5" aria-hidden="true" />
+                  </span>
                   {item}
                 </li>
               ))}
@@ -46,7 +53,7 @@ function ExperienceItem({ experience, index }) {
 
 /**
  * Experience section.
- * Vertical timeline layout with accent line and date badges.
+ * Vertical timeline layout with gradient accent line and refined date badges.
  */
 export function Experience() {
   return (
@@ -62,8 +69,15 @@ export function Experience() {
           </RevealOnScroll>
           <RevealOnScroll delay={0.05}>
             <h2 className="section-title">
-              2 Years<br />Building<br />Solutions
+              2 Years
+              <br />
+              Building
+              <br />
+              Solutions
             </h2>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.08}>
+            <div className="mt-4 h-1 w-16 bg-accent" aria-hidden="true" />
           </RevealOnScroll>
         </div>
 
@@ -71,7 +85,7 @@ export function Experience() {
           {/* Timeline line */}
           <div className="relative">
             <div
-              className="absolute left-[5px] top-2 h-[calc(100%-16px)] w-px bg-border"
+              className="absolute left-[7px] top-2 h-[calc(100%-24px)] w-px bg-gradient-to-b from-accent via-border to-transparent"
               aria-hidden="true"
             />
             {experiences.map((experience, index) => (
