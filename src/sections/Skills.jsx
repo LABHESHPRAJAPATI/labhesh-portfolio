@@ -1,7 +1,7 @@
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
 import { SocialIcon } from '@/components/common';
 import { SECTION_IDS } from '@/constants/sections';
-import { enjoyedTechnologies } from '@/data';
+import { enjoyedTechnologies, skillsSection } from '@/data';
 import { socials } from '@/data/socials';
 
 function SkillItem({ name, index }) {
@@ -35,7 +35,7 @@ export function Skills() {
           {/* Title */}
           <div className="lg:col-span-4">
             <RevealOnScroll>
-              <span className="section-label">03 — Skills</span>
+              <span className="section-label">03 — SKILLS</span>
             </RevealOnScroll>
             <RevealOnScroll delay={0.05}>
               <h2 className="section-title">
@@ -44,7 +44,7 @@ export function Skills() {
             </RevealOnScroll>
             <RevealOnScroll delay={0.1}>
               <p className="mt-6 text-base leading-relaxed text-muted-light">
-                A curated set of tools and technologies I use to build modern, scalable applications.
+                {skillsSection.subtitle}
               </p>
             </RevealOnScroll>
 

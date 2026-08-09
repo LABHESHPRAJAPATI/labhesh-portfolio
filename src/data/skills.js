@@ -4,7 +4,7 @@
 
 export const skillsSection = {
   title: 'Skills & Technologies',
-  subtitle: 'A curated set of tools and technologies I use to build modern, scalable applications.',
+  subtitle: 'A practical set of technologies and tools I use to build scalable web applications, APIs, third-party integrations, and mobile solutions.',
   enjoyedTitle: 'What I Enjoy Working With',
 };
 
@@ -59,14 +59,19 @@ export const allSkills = skillCategories.flatMap((category) => category.skills);
 export const enjoyedTechnologies = [
   'Laravel',
   'PHP',
-  'Vue.js',
   'JavaScript',
+  'Vue.js',
+  'React',
+  'jQuery',
   'MySQL',
-  'REST API',
+  'SQL',
+  'REST APIs',
   'Git',
+  'GitHub',
   'Postman',
   'Tailwind CSS',
   'Bootstrap',
   'HTML',
   'CSS',
+  'AI-Assisted Development',
 ];

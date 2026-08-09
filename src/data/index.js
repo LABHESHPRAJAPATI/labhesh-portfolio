@@ -4,8 +4,8 @@ export { education } from './education';
 export { experiences } from './experience';
 export { personal } from './personal';
 export { projects } from './projects';
-export { services } from './services';
-export { skillCategories, allSkills, enjoyedTechnologies } from './skills';
+export { services, servicesSection } from './services';
+export { skillCategories, allSkills, enjoyedTechnologies, skillsSection } from './skills';
 export { socials } from './socials';
 export {
   seo,

@@ -25,7 +25,7 @@ export function About() {
           </RevealOnScroll>
           <RevealOnScroll delay={0.05}>
             <h2 className="section-title">
-              Building scalable web applications with Laravel and modern web technologies.
+              Building reliable digital solutions with Laravel and modern web technologies.
             </h2>
           </RevealOnScroll>
 

@@ -1,6 +1,6 @@
 import { RevealOnScroll } from '@/components/animation/RevealOnScroll';
 import { SECTION_IDS } from '@/constants/sections';
-import { services } from '@/data';
+import { services, servicesSection } from '@/data';
 
 function ServiceCard({ service, index }) {
   return (
@@ -41,7 +41,7 @@ export function Services() {
         <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <RevealOnScroll>
-              <span className="section-label">06 — Services</span>
+              <span className="section-label">06 — SERVICES</span>
             </RevealOnScroll>
             <RevealOnScroll delay={0.05}>
               <h2 className="section-title">
@@ -51,7 +51,7 @@ export function Services() {
           </div>
           <RevealOnScroll delay={0.1}>
             <p className="max-w-md text-sm leading-relaxed text-muted-light sm:text-right">
-              End-to-end development services tailored to your product needs.
+              {servicesSection.subtitle}
             </p>
           </RevealOnScroll>
         </div>

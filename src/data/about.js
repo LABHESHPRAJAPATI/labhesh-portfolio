@@ -4,7 +4,7 @@
 
 export const about = {
   title: 'About Me',
-  subtitle: 'A little about my journey',
+  subtitle: 'about my journey',
   strengthsTitle: 'Strengths',
   technologiesTitle: 'Favorite Technologies',
 
@@ -15,8 +15,8 @@ export const about = {
     'I am a Full Stack Laravel Developer with 2+ years of professional experience building scalable, secure, and high-performance web applications. I specialize in backend architecture, REST APIs, and modern web technologies, and enjoy problem solving, continuous learning, and delivering user-friendly solutions.',
 
   paragraphs: [
-    'Over the past 2+ years, I have contributed to the development of web applications by customizing existing systems, implementing new business features, and integrating third-party services. My experience includes payment gateway integrations, REST APIs, WhatsApp and SMS services, and database design.',
-    'While my primary expertise is Laravel backend development, I have also worked on frontend tasks using Vue.js and React, and I use AI-assisted development tools to implement and customize project requirements efficiently.',
+    'With 2+ years of professional experience, I specialize in developing scalable web applications, robust backend systems, and seamless third-party integrations. My experience includes Laravel, REST APIs, payment gateway integrations, WhatsApp and SMS services, database design, and business-focused application development.',
+    'Alongside backend development, I have hands-on experience with Vue.js and React for frontend development and have also built mobile applications using AI-assisted development tools. I leverage modern AI tools to accelerate development, solve technical challenges, and efficiently turn project requirements into practical, reliable solutions.',
   ],
 
   highlightTerms: [

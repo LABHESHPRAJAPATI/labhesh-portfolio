@@ -26,7 +26,7 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed bottom-3 left-1/2 z-50 flex max-w-[calc(100%-24px)] -translate-x-1/2 items-center gap-0.5 rounded-full border border-border/80 bg-surface/95 p-1 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md sm:bottom-4 sm:gap-1 sm:p-1.5 lg:max-w-none"
+      className="fixed bottom-4 left-1/2 z-50 hidden max-w-[calc(100%-24px)] -translate-x-1/2 items-center gap-1 rounded-full border border-border/80 bg-surface/95 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md lg:flex lg:max-w-none"
       aria-label="Main navigation"
     >
       {NAV_ITEMS.map((item) => {

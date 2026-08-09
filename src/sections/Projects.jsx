@@ -16,7 +16,7 @@ function ProjectCard({ project, index }) {
         <div className="relative flex flex-1 flex-col gap-4">
           <div>
             <span className="font-display mb-2 block text-[11px] font-medium text-muted-light">
-              Featured Project
+              {project.tagline}
             </span>
             <h3 className="font-display text-xl font-semibold text-background transition-colors duration-300 group-hover:text-accent">
               {project.name}
@@ -57,7 +57,7 @@ export function Projects() {
       <div className="container-main">
         <div className="mb-12">
           <RevealOnScroll>
-            <span className="section-label">05 — Projects</span>
+            <span className="section-label">05 — PROJECTS</span>
           </RevealOnScroll>
           <RevealOnScroll delay={0.05}>
             <h2 className="section-title">
@@ -66,7 +66,7 @@ export function Projects() {
           </RevealOnScroll>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}

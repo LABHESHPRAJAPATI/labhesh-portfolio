@@ -25,14 +25,19 @@ function ExperienceItem({ experience, index }) {
         <p className="mb-4 text-sm leading-relaxed text-muted md:text-base">{description}</p>
 
         {responsibilities.length > 0 && (
-          <ul className="flex flex-col gap-2">
-            {responsibilities.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-muted-light">
-                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <>
+            <span className="font-display mb-3 block text-[11px] font-semibold uppercase tracking-[0.1em] text-accent">
+              Key Responsibilities
+            </span>
+            <ul className="flex flex-col gap-2">
+              {responsibilities.map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-muted-light">
+                  <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
     </RevealOnScroll>
@@ -53,11 +58,11 @@ export function Experience() {
       <div className="container-main grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <RevealOnScroll>
-            <span className="section-label">04 — Experience</span>
+            <span className="section-label">04 — EXPERIENCE</span>
           </RevealOnScroll>
           <RevealOnScroll delay={0.05}>
             <h2 className="section-title">
-              2+ Years<br />Building<br />Solutions
+              2 Years<br />Building<br />Solutions
             </h2>
           </RevealOnScroll>
         </div>

@@ -52,6 +52,8 @@ function ThemeToggle() {
  */
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const handleNavClick = (event, id) => {
     event.preventDefault();
@@ -66,18 +68,20 @@ export function Header() {
           <a
             href={`#${SECTION_IDS.HOME}`}
             onClick={(event) => handleNavClick(event, SECTION_IDS.HOME)}
-            className="group flex items-center gap-2 font-display text-foreground"
+            className="group flex items-center gap-2.5"
             aria-label={`${personal.name} - Back to home`}
           >
-            {/* Desktop: full name with styled underline accent */}
-            <span className="hidden text-lg font-semibold tracking-[-0.03em] sm:inline">
+            {/* Brand icon badge */}
+            <img
+              src={isDark ? '/lp-icon-cream.svg' : '/lp-icon-navy.svg'}
+              alt={personal.name}
+              className="h-9 w-9 rounded-full"
+            />
+
+            {/* Desktop: brand name */}
+            <span className="hidden text-lg font-semibold tracking-[-0.03em] text-foreground sm:inline">
               {personal.name}
               <span className="ml-0.5 text-accent">.</span>
-            </span>
-
-            {/* Mobile: monogram badge */}
-            <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-sm font-bold tracking-[-0.02em] text-accent sm:hidden">
-              {personal.name.split(' ').map((n) => n[0]).join('')}
             </span>
           </a>
 

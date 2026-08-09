@@ -6,16 +6,18 @@ import { personal } from './personal';
 
 export const seo = {
   name: personal.name,
-  siteName: `${personal.name} — Portfolio`,
-  defaultTitle: `${personal.name} | ${personal.title}`,
-  titleTemplate: `%s | ${personal.name}`,
-  defaultDescription: `${personal.name} — ${personal.title} with ${personal.experience} years of experience building scalable web applications with Laravel, PHP, Vue.js, and MySQL.`,
-  keywordsTemplate: `%s, ${personal.name}, ${personal.title}, Laravel Developer, PHP Developer, Vue.js Developer, Full Stack Developer, Web Developer, Surat, India`,
-  url: 'https://labheshprajapati.dev',
+  siteName: personal.name,
+  defaultTitle: 'Labhesh Prajapati | Laravel & Full Stack Developer',
+  titleTemplate: 'Labhesh Prajapati | Laravel & Full Stack Developer',
+  defaultDescription:
+    'Labhesh Prajapati is a Laravel and Full Stack Developer specializing in scalable web applications, REST APIs, third-party integrations, and modern web and mobile solutions.',
+  keywordsTemplate: `%s, ${personal.name}, Laravel Developer, Full Stack Developer, PHP Developer, Vue.js Developer, React Developer, Web Developer, Surat, India`,
+  url: 'https://labhesh-prajapati.vercel.app/',
   ogImage: '/og-image.png',
   twitterHandle: '',
   locale: 'en_US',
-  themeColor: '#0a0f1c',
+  themeColor: '#0f172a',
+  author: personal.name,
 };
 
 export function generateTitle(title) {
@@ -28,7 +30,7 @@ export function generateDescription(description) {
 }
 
 export function generateKeywords(keywords) {
-  return seo.keywordsTemplate.replace('%s', keywords || 'Laravel, PHP, Vue.js, MySQL');
+  return seo.keywordsTemplate.replace('%s', keywords || 'Laravel, PHP, Vue.js, MySQL, React, Full Stack Development');
 }
 
 export function generateCanonical(path = '') {

@@ -18,7 +18,7 @@ export const personal = {
   image: '/images/profile.jpeg',
   imageHover: '/images/profile.jpeg',
   tagline:
-    'Building scalable Laravel applications, clean REST APIs, and seamless third-party integrations that power reliable web products.',
+    'Building scalable Laravel applications, seamless API integrations, and modern full-stack solutions with clean, reliable backend architecture.',
   animatedTitles: [
     'Laravel Developer',
     'Backend Developer',
