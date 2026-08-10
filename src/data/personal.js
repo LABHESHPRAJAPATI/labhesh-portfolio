@@ -14,7 +14,7 @@ export const personal = {
   phone: '6377383035',
   availability: 'Open to full-time roles',
   languages: ['Gujarati', 'Hindi', 'English'],
-  resume: '/resume/labesh-prajapati-resume.pdf',
+  resume: '/resume/labhesh-prajapati-resume.pdf',
   image: '/images/profile.jpeg',
   imageHover: '/images/profile.jpeg',
   tagline:
